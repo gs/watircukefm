@@ -1,0 +1,57 @@
+<div class="frame">
+  <div class="head">
+    <div class="actions">
+      <h2>Actions</h2>
+    </div>
+    <h1>Showing: <i><%= @statistic.cfm.config.tags %></i></h1>
+  </div>
+  <div class="content two_columns">
+    <div class="left">
+
+      <% [:overal, :iteration, :bucket, :developer, :something_todo, :component, :various, :status].each do |type| %>
+          <%= raw statistic_table(type, @statistic) %>
+      <% end %>
+
+    </div>
+
+    <div class="right">
+
+      <% form_tag '', :method => :get do %>
+
+          <h3 class="first">Scope by</h3>
+
+          <div class="pdd">
+
+            <fieldset class="inputs">
+              <%= hidden_field_tag 'config[cvs_commit]', @cfm.config.cvs_commit %>
+              <%= hidden_field_tag 'config[cvs_push]', @cfm.config.cvs_push %>
+              <%= hidden_field_tag 'config[aggregate][]', @cfm.config.aggregate.first %>
+              <%= hidden_field_tag 'config[aggregate][]', @cfm.config.aggregate.last %>
+              <ol>
+                <li class="select">
+                  <%= label_tag 'config[dir]', "Directory:" %>
+                  <%= select_tag 'config[dir]', options_for_select(list_of_dirs, :selected => @cfm.config.dir) %>
+                </li>
+                <li class="string">
+                  <%= label_tag 'config[tags]', "Tags:" %>
+                  <%= text_field_tag 'config[tags]', @cfm.config.tags %>
+                </li>
+                <li class="commit ta_r">
+                  <div class="bt">
+                    <%= submit_tag "Filter" %>
+                  </div>
+                </li>
+              </ol>
+            </fieldset>           
+
+          </div>
+
+      <% end %>
+    </div>
+
+    <div class="clb"></div>
+
+
+  </div>
+</div>
+

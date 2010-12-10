@@ -1,0 +1,105 @@
+* fix - explicit conversion to string for match param ( ruby 1.9.2 issue )
+* fix - config.aggregate should by default array, instead of empty string
+* feature - orange highlighting scenario estimation if this scenario is in status @_todo
+* fix - status @_tested is treated also as done
+* feature - red highlighting scenario estimation if this scenario isn't done
+* fix - sorting group by context in business overview
+* feature - grouping by role (@$_)
+* fix - feature delete
+* fix - correct parsing scenario|feature|background title when in title appear ':'
+* fix - syntax highlighting ( Background:, Examples:, And, But )
+* fix - &amp; &lt; &gt; reverse_html_escape
+* fix - escaping ' and " for javascript strings
+* fix sorting directory names in business overview page
+* fix parsing estimation tag in scenarios navigator
+* custom build of Mozilla SkyWriter (aka Bespin) with gherkin syntax highlighting
+* editor page
+** layout fixes
+** scenario navigation
+*** including tags and estimation
+*** filtering functionality
+* scenario on business view clickable - direct access to scenario in editor
+* updating bespin ( new name SkyWriter ) to 0.9a2
+* Statistics and Aggregate by Something Todo
+
+0.1.3
+* Statisctic- various
+* Statistic - overal, component, iteration, developer, bucket, status
+* Busines Overview - alphabetic sorting aggregated headers
+* Busines Overview - progress bars on aggregated results (skipped on status aggregation)
+* Percentage progress visualization by Rafał Bromirski from Selleo
+* Fluid Layout by Rafał Bromirski from Selleo
+* Layout Fixes ( browser compatibility ) by Rafał Bromirski from Selleo
+
+0.1.2
+* Editor - Basic ::: Scenario: Moving feature
+* Editor - Basic ::: Scenario: Renaming feature
+* Editor - Basic ::: Scenario: Deleting feature
+
+0.1.1
+* filter ::: Scenario: Filtering by negation (~)
+* filter ::: Scenario: Filtering by group of tags ( using or - coma )
+* fix take only tags from feature that are not present in scenario
+* fix do not overwrite config git when using filter from business overview
+
+0.1.0
+* fix do not overwrite config[aggragate] when saving files
+* align scenario to left (Github@Issue#6)
+* removing simply http auth - messing up with devise
+* changing default commit message
+* checkbox'es in editor that allows to skip commit and push
+* refactoring config and adding conditional push and commit to feature save
+
+0.0.11
+* moving syntax highlighting to next milestone
+* adding some validation for create feature
+* fix navigator title regex
+* fix of listing only directories in dir scope
+* adding navigation to editor
+* updated bespin to 0.8.0
+
+0.0.10
+* fix of saving edited file
+* add create new feature
+* menu items highlighting
+* in aggregate report also displaying scenarios
+* fix colspan spelling
+* fix correct paths to assests
+* fix assent handling (content_type)
+* graphic and design be Rafał Bromirski from Selleo
+  http://cs3b-cucumber-fm.s3.amazonaws.com/0.0.10.editor.jpg
+  http://cs3b-cucumber-fm.s3.amazonaws.com/0.0.10.dasboard.jpg
+
+0.0.9
+* using bespin as editor
+  http://cs3b-cucumber-fm.s3.amazonaws.com/0.0.9.editor.jpg
+* internal assets serving
+* bugfix: wrong method name in cfm
+
+0.0.8
+* git (with remotes) support
+* simply editor
+  http://cs3b-cucumber-fm.s3.amazonaws.com/0.0.8.editor.jpg
+* ugly styling in dashboard
+  http://cs3b-cucumber-fm.s3.amazonaws.com/0.0.8.dashboard.jpg
+* bugfix: spelling of collspan -> colspan
+
+0.0.7
+* listing scenarios in dashboard
+* aggregator for based on two dimensions
+> Viewing dashboard
+  http://cs3b-cucumber-fm.s3.amazonaws.com/0.0.7.dashboard.jpg
+
+0.0.6
+* basic tag filtering
+* keeping user setting in cookie
+
+0.0.5
+Business Overview - dashboard
+> Viewing dashobard
+  http://cs3b-cucumber-fm.s3.amazonaws.com/0.0.5.dashboard.jpg
+* scheduling features
+* features specyfication
+
+0.0.4
+* core development

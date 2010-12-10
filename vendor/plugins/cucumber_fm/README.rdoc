@@ -1,0 +1,45 @@
+= Cucumber Feature Manager
+
+tool that supports scope management using cucumber features as specyfication
+
+
+= DEMO
+
+http://demo.cucumber.fm
+
+
+== BETA BETA BETA BETA BETA
+
+do not use this in production
+
+For now it only works when:
+
+* you are using rails version 2.3.8 or 3.0.0
+* you have features directory inside your rails app
+
+Any feedback would be valuable ( use github issue )
+always provide information as:
+* os
+* ruby version
+* rails version
+* backtrace
+
+== Installation
+
+    script/plugin install git://github.com/cs3b/cucumber_fm.git
+
+    gem install diff-lcs
+
+== Usage
+
+    /documentation/features
+
+== Documentation
+
+The latest presentation (based on version 0.0.11) is accessible here: http://vimeo.com/13816531
+
+I have plan to make some screencasts after version 0.2.0 would be ready
+
+== ScreenShoots
+
+http://cs3b.github.com/cucumber_fm/gallery.html

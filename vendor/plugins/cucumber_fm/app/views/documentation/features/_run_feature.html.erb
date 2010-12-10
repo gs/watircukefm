@@ -1,0 +1,58 @@
+<div id="test_feature_form">
+<% form_for 'watircuke_test', :url => { :controller => 'watircuke', :action => 'runme' }, :html=>{ :id => 'watircuke_test', :target => "_blank" }do |f| -%>
+Select Browser:
+  <%= f.select :browser_name, options_for_select(Watircuke.browsers) %>
+  <%= hidden_field_tag :test_name, @feature.relative_path %>
+  <%= button_to_function "Run", "runtest();" %>
+<% end -%>               
+</div>
+<div id="stop_the_test" style="display:none;">
+  <% form_for 'stop_test', :url => { :controller => 'watircuke', :action => 'stopme' }, :html => { :id => 'stop_watircuke_test' } do %>
+  <%= button_to_function 'Stop the test', "stoptest();"%>
+  <% end %>
+</div>                       
+
+<script>       
+  
+var holdTheInterval = null;
+function runtest()
+{
+  $("#stop_the_test").show();
+  $("#test_feature_form").hide(); 
+  $("#watircuke_test").submit();
+  holdTheInterval = setInterval(callMeOften, 10000);
+
+}  
+
+function stoptest()
+{
+  $("#stop_the_test").hide();
+  $("#test_feature_form").show(); 
+  $("#stop_watircuke_test").submit();
+}                                                          
+
+function reset()
+{
+  $("#stop_the_test").hide();
+  $("#test_feature_form").show(); 
+}                   
+
+function callMeOften() 
+{
+  $.ajax({
+    method: 'get',
+    url : '/documentation/watircuke/checkme',
+    dataType : 'text',
+    success: function (text) {
+      if(text.length > 1) {
+        clearInterval(holdTheInterval);
+        $("#stop_the_test").hide();
+        $("#test_feature_form").show(); 
+      }
+     }
+  });
+}
+
+
+</script>
+

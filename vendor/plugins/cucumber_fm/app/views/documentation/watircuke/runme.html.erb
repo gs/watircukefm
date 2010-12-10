@@ -1,0 +1,22 @@
+<div id="temporary_message">
+  Please wait while test is being processed....
+
+  <script> 
+    function callMeOften() {
+      $.ajax({
+        method: 'get',
+        url : 'checkme',
+        dataType : 'text',
+        success: function (text) {
+          if(text.length > 1) {
+            clearInterval(holdTheInterval);
+            $('#temporary_message').html(text);
+          }
+         }
+      });
+    }
+
+    var holdTheInterval = setInterval(callMeOften, 5000);
+  </script>
+
+</div>
