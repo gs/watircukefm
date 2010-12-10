@@ -8,16 +8,21 @@
   <div class="content two_columns">
     <div class="left">
       <table class="generic" cellpadding="0" cellspacing="0">
+        <thead>
         <tr><th style="width: 170px"> Test name</th>
           <th style="width: 170px">Remove</th>
         </tr>
+        </thead>
+        <tbody>
         <% @result.each do |result| %>
         <% result_name = result.gsub("public/test_results/", "")%>
-        <tr >
-          <td style = 'text-align: left; padding-left: 25px;'><%= link_to "#{result_name}", {:controller => 'watircuke', :action => "show_result", :id => result }, :target => "_blank" %> </td> 
-          <td style = "text-align:center;"><%= link_to "Remove", { :controller => 'watircuke', :action => "remove", :id => result } %></td>
+        
+        <tr class="feature_header">
+          <td class='scenario_row' style = 'text-align: left; padding-left: 25px;'><%= link_to "#{result_name}", {:controller => 'watircuke', :action => "show_result", :id => result }, :target => "_blank" %> </td> 
+          <td class='scenario_row' style = "text-align:center;"><%= link_to "Delete",  {:controller => 'watircuke', :action => 'delete', :id => result},  :confirm => "Do you really want to remove this result?" %></td>
         </tr>
         <% end %>
+        </tbody>
       </table>
     </div>
 
@@ -25,7 +30,7 @@
 
       <% form_tag '', :method => :get do %>
 
-      <h3 class="first">Scope by</h3>
+      <h3 class="first">&nbsp;</h3>
 
       <div class="pdd">
 

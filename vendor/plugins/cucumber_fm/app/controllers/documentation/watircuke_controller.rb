@@ -11,7 +11,6 @@ class Documentation::WatircukeController < Documentation::ApplicationController
 
   def checkme 
     pid = Watircuke.find_process    
-    #puts pid.length         
     if Watircuke.is_windows? && pid
       render :nothing => true
     elsif !Watircuke.is_windows? && pid.length > 2
@@ -41,12 +40,18 @@ class Documentation::WatircukeController < Documentation::ApplicationController
   def show_result        
     path = params[:id]
     f = find_file_result_in_folder(Rails.root.join(path))
-    render :file => f.to_s
+    if f.empty?
+      redirect_to :action => "results"
+      flash[:notice] = "Could not show results...no html file found"
+    else
+      render :file => f.to_s
+    end
   end
                           
-  def remove
+  def delete
      path = params[:id] 
      remove_folder(path)
+     flash[:notice]= "Folder was removed"
      redirect_to :action => "results"
   end                        
                               
