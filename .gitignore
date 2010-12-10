@@ -2,4 +2,6 @@ test_results/*
 log/*
 db/*
 public/test_results/*
+config/*
+features/*
 
