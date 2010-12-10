@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
                                                                                              
     doc.watircuke_results 'watircuke/results', :controller => 'watircuke', :action => 'results'
     
-    doc.resources :watircuke, :member => [:delete]
+#    doc.resources :watircuke, :member => [:delete]
 
     doc.resources :features, :member => [:rename, :delete, :move], :collection => [:statistic]
     doc.resource :kanban, :controller => 'kanban'      

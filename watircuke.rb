@@ -12,7 +12,7 @@ class RunMe
   
   def initialize(tests)
     @tests = tests
-    system "killall -9 firefox-bin"   
+    # system "killall -9 firefox-bin"   
   end
 
   def start

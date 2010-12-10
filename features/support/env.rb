@@ -69,6 +69,12 @@ begin
     embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}")
 
   end
+
+  at_exit do
+    browser.close
+    puts "browser closed"
+  end             
+  
 rescue Exception => ex
   puts "#{ex}".red
 end                                                                                            
