@@ -1,0 +1,5 @@
+data_example:
+    id: 1
+    name: foo
+    job: bar
+    

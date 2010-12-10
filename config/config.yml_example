@@ -1,0 +1,14 @@
+config:                          
+    #browser can be -> firefox, ie, chrome, safari
+    browser: firefox
+    #fixtures are languages.yml files
+    fixtures: sanity_check_pl
+    #test urls
+    server_lang: staging home pl   
+    server_login_lang: staging login pl
+    mybusiness_url: staging.qype.pl/mybusiness/
+    admin_login: admin staging login
+    #true/false = check if there are missing translations on scenario end
+    check_translation: true
+    #this is a regexp template for validation on page for missing translations
+    translation_tag: "@[0-9a-zA-Z]+_[0-9a-zA-Z]+"
