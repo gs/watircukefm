@@ -1,9 +1,5 @@
-config/*
 test_results/*
-.redcar/*
-config/config.yml
 log/*
 db/*
 public/test_results/*
-features/*
 

@@ -1,4 +1,4 @@
-==WatirCukeFM
+==   WatirCukeFM  ==
 
 Watir  / Webdriver + Cucumber + Feature Manager
 
@@ -23,24 +23,24 @@ Application is divided for 3 parts:
 
   - After clicking on feature user can edit, save, manage file, navigate and run test in chosen browser
 
-  - Running test will open new tab where after test results will be shown (results are stored in "public/test_results" folder)
+  - Running test will open new tab where after test finishes, results will be shown (results are stored in "public/test_results" folder)
 
 - Statistics - useful information about status of feature, estimation, state
   
-- Results  - lists all test results, by clicking on its name user can view results or remove it if not needed
+- Results  - lists all test results, by clicking on its name user can view results or remove it if they are not needed anymore
 
 
 IMPORTANT:
 
 - All features are stored in "features" folder (cucumber "http://cukes.info")
 
-- "Dictionary" folder contains all implemented by default actions supported by watircuke - keep to that notation can improve your test implementation
+- "Dictionary" folder contains all implemented by default actions supported by watircuke
 
-- If you would prefer to write tests using TextMate, Redcar there is a folder TextMateBundles with bundles. Just drop them to your Bundles folder and have fun ;) 
+- If you would prefer to write tests using TextMate, Redcar there is a folder TextMateBundles with bundles. Just drop them to your editor Bundles folder and have fun ;) 
 
-- Currently I have extended TestWiseRecorder (http://testwisely.com/en/testwise/recorder) to support watircuke syntax (just install it - its firefox plugin) stored in "TestWiseRecorder" folder (version experimental)
+- Currently I have extended TestWiseRecorder (http://testwisely.com/en/testwise/recorder) to support watircuke syntax (just install  - its firefox plugin) stored in "TestWiseRecorder" folder (version experimental)
 
-- Application makes screenshost if some step will fail (not implemeted for linux yet.)
+- Application makes screenshots if some step will fail (not implemeted for linux yet.)
 
 - Can check for missing translation - just goto config/config.yml file and enter regexp for translation_tag and set check_translation to true
 
@@ -63,3 +63,7 @@ IMPORTANT:
       I click the ":login.login_button" button   
 
 
+
+License: MIT
+
+Have fun and contact me any time at grzegorz.smajdor[at]gmail.com
