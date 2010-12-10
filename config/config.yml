@@ -3,11 +3,6 @@ config:
     browser: firefox
     #fixtures are languages.yml files
     fixtures: test_data
-    #test urls
-    server_lang: google
-    server_login_lang: google
-    mybusiness_url: staging.qype.pl/mybusiness/
-    admin_login: admin staging login
     #true/false = check if there are missing translations on scenario end
     check_translation: true
     #this is a regexp template for validation on page for missing translations
