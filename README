@@ -1,4 +1,4 @@
-==   WatirCukeFM  ==
+==   WatirCukeFM   ==
 
 Watir  / Webdriver + Cucumber + Feature Manager
 
@@ -36,7 +36,7 @@ IMPORTANT:
 
 - "Dictionary" folder contains all implemented by default actions supported by watircuke
 
-- If you would prefer to write tests using TextMate, Redcar there is a folder TextMateBundles with bundles. Just drop them to your editor Bundles folder and have fun ;) 
+- If you would prefer to write tests using TextMate or Redcar there is a folder TextMateBundles with bundles. Just drop them to your editor Bundles folder and have fun ;) 
 
 - Currently I have extended TestWiseRecorder (http://testwisely.com/en/testwise/recorder) to support watircuke syntax (just install  - its firefox plugin) stored in "TestWiseRecorder" folder (version experimental)
 
