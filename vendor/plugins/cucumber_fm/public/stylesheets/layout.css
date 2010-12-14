@@ -85,8 +85,6 @@ body
     background: url(/documentation/assets/images/layout/menu_results.png) no-repeat top center transparent;
 }
 
-
-
 #menu ul li a:hover
 {
     opacity: 1;
@@ -482,7 +480,7 @@ table tbody tr.feature_header:first-child td
 
 /* --- bt / submit */
 
-div.bt, a.bt, button.bt
+div.bt, a.bt
 {
 	display: inline-block;
     -moz-border-radius: 6px;

@@ -26,29 +26,29 @@ class Documentation::ApplicationController < ActionController::Base
   end
 
   def dir_that_should_be_skippped
-    %w(_step_definitions support . ..)
+    %w(_step_definitions support machines . ..)
   end
 
   def list_of_dirs
     [""] +
-    (Dir.entries(feature_dir_path) - dir_that_should_be_skippped).collect { |name|
-      name if File.directory?(File.join(feature_dir_path, name)) }.compact.sort
-    end
-
-    def save_config
-      if params.has_key?(:config)
-        cookies[:config] = params[:config].to_json
-      elsif cookies[:config].nil?
-        cookies[:config] = {'dir' => ''}.to_json
-      elsif !read_config.has_key?('dir')
-        p = read_config
-        p['dir'] = ''
-        cookies[:config] = p.to_json
-      end
-    end
-
-    def read_config
-      JSON.parse(cookies[:config])
-    end
-
+            (Dir.entries(feature_dir_path) - dir_that_should_be_skippped).collect { |name|
+              name if File.directory?(File.join(feature_dir_path, name)) }.compact.sort
   end
+
+  def save_config
+    if params.has_key?(:config)
+      cookies[:config] = params[:config].to_json
+    elsif cookies[:config].nil?
+      cookies[:config] = {'dir' => ''}.to_json
+    elsif !read_config.has_key?('dir')
+      p = read_config
+      p['dir'] = ''
+      cookies[:config] = p.to_json
+    end
+  end
+
+  def read_config
+    JSON.parse(cookies[:config])
+  end
+
+end

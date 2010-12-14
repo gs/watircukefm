@@ -98,7 +98,7 @@ module Documentation
                 content_tag('td', link_to_function('[+]',"$(\".scenario_#{make_me_uniq(feature)}\").toggle();")) <<
                 content_tag('td', feature.scenarios.size, :style => "text-align:center;") <<
                 content_tag('td', feature.estimation, :style => "text-align:center;")
-     end
+      end
     end
 
     def scenario_rows(scenarios)
@@ -106,18 +106,18 @@ module Documentation
     end
 
     def scenario_row(scenario)
-      content_tag('tr', :class => "scenario_row scenario_#{make_me_uniq(scenario.feature)}", :style => "display:none") do 
-          content_tag('td') <<
-                  content_tag('td',  :colspan => 3, :style => 'text-align: left; padding-left: 25px;') do
-                    link_to(scenario.title,
-                            edit_documentation_feature_path(scenario.feature.id, :query => scenario.title),
-                    :class => 'scenario_link')
-                  end <<
-                  # TODO refactor
-                                  content_tag('td', scenario.done? ? scenario.estimation : content_tag('span', scenario.estimation, :class => "marker #{scenario.status == '@_todo' ? 'm_orange' : 'm_red'}"), :style => 'text-align: center;',
-                                              :class => (scenario.done? ? 'done' : 'not_done'))
-         end
+      content_tag('tr', :class => 'scenario_row') do
+        content_tag('td') <<
+                content_tag('td', :colspan => 3, :style => 'text-align: left; padding-left: 25px;') do
+                  link_to(scenario.title,
+                          edit_documentation_feature_path(scenario.feature.id, :query => scenario.title),
+                          :class => 'scenario_link')
+                end <<
+            # TODO refactor
+                content_tag('td', scenario.done? ? scenario.estimation : content_tag('span', scenario.estimation, :class => "marker #{scenario.status == '@_todo' ? 'm_orange' : 'm_red'}"), :style => 'text-align: center;',
+                            :class => (scenario.done? ? 'done' : 'not_done'))
       end
+    end
 
     # assets
 
