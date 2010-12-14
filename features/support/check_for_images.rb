@@ -1,4 +1,3 @@
-#not yet in use
 require 'rubygems'
 require "httparty"
 require "nokogiri"
