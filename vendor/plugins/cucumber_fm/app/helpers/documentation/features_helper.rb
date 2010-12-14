@@ -106,7 +106,7 @@ module Documentation
     end
 
     def scenario_row(scenario)
-      content_tag('tr', :class => 'scenario_row') do
+      content_tag('tr', :class => "scenario_row scenario_#{make_me_uniq(scenario.feature)}", :style => "display:none;") do
         content_tag('td') <<
                 content_tag('td', :colspan => 3, :style => 'text-align: left; padding-left: 25px;') do
                   link_to(scenario.title,
