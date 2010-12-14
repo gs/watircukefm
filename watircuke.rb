@@ -72,7 +72,7 @@ class RunMe
   
   def copy_config_yml_file
     config_name = "config_" + ARGV[0].to_s
-    FileUtils.cp "./config/machines/#{config_name}.yml", "./config/config.yml"
+    FileUtils.cp "./features/machines/#{config_name}.yml", "./config/config.yml"
   end
 
 end
