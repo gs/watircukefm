@@ -1,7 +1,7 @@
 <div class="frame">
   <div class="head">
     <div class="actions">
-      <h2>Actions</h2>
+      <h2></h2>
     </div>
     <h1>Results: <i><%#= @statistic.cfm.config.tags %></i></h1>
   </div>
@@ -9,8 +9,8 @@
     <div class="left">
       <table class="generic" cellpadding="0" cellspacing="0">
         <thead>
-          <tr><th style="width: 170px"> Test name </th>
-            <th style="width: 170px"> Delete </th>
+          <tr><th style="width: 170px"> Test result </th>
+            <th style="width: 170px"> Action </th>
           </tr>
         </thead>
         <tbody>  
@@ -19,15 +19,13 @@
             <td class='scenario_row' style='text-align: center;' colspan='3'>No results</td> 
           </tr>
           <% else %>
-
-
-          <% @result.each do |result| %>
-          <% result_name = result.gsub("public/test_results/", "")%>
-          <tr class="feature_header">
-            <td class='scenario_row' style="text-align: left; padding-left: 50px;"><%= link_to "#{result_name}", {:controller => 'watircuke', :action => "show_result", :id => result }, :target => "_blank" %> </td> 
-            <td class='scenario_row' style="text-align:center;"><%= link_to "Delete",  {:controller => 'watircuke', :action => 'delete', :id => result},  :confirm => "Do you really want to remove this result?" %></td>
-          </tr>
-          <% end %>   
+            <% @result.each do |result| %>
+            <% result_name = result.gsub("public/test_results/", "")%>
+            <tr class="feature_header">
+              <td class='scenario_row' style="text-align: left; padding-left: 50px;"><%= link_to "#{result_name}", {:controller => 'watircuke', :action => "show_result", :id => result }, :target => "_blank" %> </td> 
+              <td class='scenario_row' style="text-align:center;"><%= link_to "Delete",  {:controller => 'watircuke', :action => 'delete', :id => result},  :confirm => "Do you really want to remove this result?" %></td>
+            </tr>
+            <% end %>   
           <% end %>
         </tbody>
       </table>
