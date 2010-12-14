@@ -1,6 +1,6 @@
 Feature: Sample
 
-@_done
+@m1 @_done
 Scenario: Check google results for Ruby
   Given I go to "http://www.google.de/firefox?client=firefox-a&rls=org.mozilla:en-GB:official"
   And I fill in the text field "sf" with "ruby"
