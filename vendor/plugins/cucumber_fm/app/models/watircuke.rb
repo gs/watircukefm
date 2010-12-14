@@ -1,8 +1,12 @@
 class Watircuke       
-   
+
 
   def self.browsers
-    %w/ff ie chrome safari/
+    if Watircuke.is_windows?
+      %w/ff ie chrome safari/ 
+    else
+      %w/ff chrome safari/ 
+    end
   end      
 
   def self.find_test_folder
