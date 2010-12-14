@@ -67,13 +67,11 @@ begin
   AfterStep('@new_feature') do
     t = Time.new.to_i  
     embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}")
-
   end
-
-  at_exit do
-    browser.close
-    puts "browser closed"
-  end             
+  
+  at_exit do 
+   browser.close
+  end
   
 rescue Exception => ex
   puts "#{ex}".red
