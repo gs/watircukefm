@@ -34,11 +34,7 @@ IMPORTANT:
 
 - All features are stored in "features" folder (cucumber "http://cukes.info")
 
-- "Dictionary" folder contains all implemented by default actions supported by watircuke
-
-- If you would prefer to write tests using TextMate or Redcar there is a folder TextMateBundles with bundles. Just drop them to your editor Bundles folder and have fun ;) 
-
-- Currently I have extended TestWiseRecorder (http://testwisely.com/en/testwise/recorder) to support watircuke syntax (just install  - its firefox plugin) stored in "TestWiseRecorder" folder (version experimental)
+- To get familiar with syntax just check "watircuke_step.rb" file or visit https://github.com/gs/WatirCuke-Bundles. You can clone https://github.com/gs/WatirCuke-Bundles and drop it into TextMate or Redcar for snippet support.
 
 - Application makes screenshots if some step will fail (not implemeted for linux yet.)
 
