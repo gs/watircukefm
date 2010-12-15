@@ -2,7 +2,7 @@
 
 Watir  / Webdriver + Cucumber + Feature Manager
 
-Rails (2.3.8) application which allows to managed cucumber features written in cucumber but run with browser interface and them throughout the web application in rails
+Web Application which allows to managed cucumber features written in cucumber and runs them throughout browser.
 
 Rails application and interface is cloned from https://github.com/cs3b/cucumber_fm/, and it has been extended with functionality of WatirCuke (https://github.com/gs/watircuke/)
 
@@ -21,9 +21,9 @@ Application is divided for 3 parts:
 
 - Business overview - contains list of available features, can be group by, search by tag and create new feature
 
-  - After clicking on feature user can edit, save, manage file, navigate and run test in chosen browser
+  - After clicking on feature user can edit, save, manage file, navigate and run test in chosen browser. Started test, can be stopped in any time.
 
-  - Running test will open new tab where after test finishes, results will be shown (results are stored in "public/test_results" folder)
+  - Running test will open new tab where test results will be shown (results are stored in "public/test_results" folder)
 
 - Statistics - useful information about status of feature, estimation, state
   
@@ -61,6 +61,33 @@ IMPORTANT:
      And then in scenario to use its content:
  
       I click the ":login.login_button" button   
+
+                                    
+
+RUNNING:
+
+Application can be run in different ways:                                                                                 
+
+1) start server and run the test by clicking
+
+2) when in folder type in terminal: ruby watircuke.rb  -- this will display help and info about how to run it from console
+
+
+
+KNOWN ISSUES:
+
+Problem:
+ Some time when starting tests browser starts and hangs, page does not load.
+ 
+Solution:
+ Just kill the browser and test and starts once again.
+
+
+Problem:  
+  IE hangs when using Watir-Webdriver
+  
+Solution:
+  Switch from Watir-Webdriver to Watir (go to "select_browser.rb" file and comment proper lines)
 
 
 
