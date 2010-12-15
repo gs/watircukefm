@@ -58,7 +58,7 @@ IMPORTANT:
  
       I click the ":login.login_button" button   
       
-- Before run go to "feaures/support" folder and rename "paths.rb_example" in "paths.rb"      
+- Before run go to "feaures/support" folder and rename "paths.rb_example" to "paths.rb"      
 
                                     
 
