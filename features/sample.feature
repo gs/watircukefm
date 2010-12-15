@@ -6,3 +6,4 @@ Feature: Sample
     And I fill in the text field "sf" with "ruby"
     And I click the "Google-Suche" button
     And I click the "Die Programmiersprache Ruby" link
+    Then I should see the "NOT CORRECT TEXT"
