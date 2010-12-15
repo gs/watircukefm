@@ -32,7 +32,7 @@ Application is divided for 3 parts:
 
 IMPORTANT:
 
-- All features are stored in "features" folder (cucumber "http://cukes.info")
+- All features are stored in "features" folder ( cucumber http://cukes.info )
 
 - To get familiar with syntax just check "watircuke_step.rb" file or visit https://github.com/gs/WatirCuke-Bundles. You can clone https://github.com/gs/WatirCuke-Bundles and drop it into TextMate or Redcar for snippet support.
 
