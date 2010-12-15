@@ -6,6 +6,8 @@ Web Application which allows to managed cucumber features written in cucumber an
 
 Rails application and interface is cloned from https://github.com/cs3b/cucumber_fm/, and it has been extended with functionality of WatirCuke (https://github.com/gs/watircuke/)
 
+Demo can be viewed on http://www.vimeo.com/17840436
+
 == How to make it work?
 
 1) Just clone the repo from "https://github.com/gs/watircukefm/"
