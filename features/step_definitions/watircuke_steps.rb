@@ -83,7 +83,7 @@ end
 
 Then /I take a screenshot/ do
    t = Time.new.to_i
-   embed_screenshot("#{@screenshot_path}screenshot-#{t}", "screenshots/screenshot-#{t}")
+   embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}")
 end
 
 Then /I should see the span "(.*)" with "(.*)"/ do |span, what|
