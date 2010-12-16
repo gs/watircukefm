@@ -16,9 +16,8 @@ require 'cucumber/formatter/unicode'
 require 'features/support/select_browser'
 include Test::Unit::Assertions
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-begin
-  
 
+begin
   #read the config.yml file found in config/config.yml
   ##--------------------------------------------------
   read_config               
