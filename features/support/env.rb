@@ -6,6 +6,7 @@ require 'chronic'
 require 'rspec'
 require 'nokogiri'
 require 'open-uri'
+require 'openssl'
 require 'test/unit/assertions'
 require 'features/support/read_config'
 require 'features/support/create_screenshot_folder'
@@ -14,8 +15,10 @@ require 'features/support/check_missing_translations'
 require 'cucumber/formatter/unicode'
 require 'features/support/select_browser'
 include Test::Unit::Assertions
-
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 begin
+  
+
   #read the config.yml file found in config/config.yml
   ##--------------------------------------------------
   read_config               
