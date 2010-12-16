@@ -24,10 +24,10 @@ begin
   else
     BROWSER = select_browser(ENV['BROWSER'])
   end
-  #BROWSER = select_browser(@br)
   CHECK_TRANSLATIONS = @check_translation
-  TRANSLATION_TAG = @translation_tag
-  LANGUAGES = #@fixtures
+  TRANSLATION_TAG = @translation_tag                 
+  
+  LANGUAGES = @fixtures if ENV['DEF_TEST']
 
   ##-------------------------------------------------
 
@@ -35,14 +35,9 @@ begin
 
   if Dir["#{folder_prefix}/*"].select{|x| File.directory?(x)}.map{|x| [File.ctime(x), x]}.sort_by{|x| x.first}.last
     screenshot_path = (Dir["#{folder_prefix}/*"].select{|x| File.directory?(x)}.map{|x| [File.ctime(x), x]}.sort_by{|x| x.first}.last.last.inspect + "/screenshots/").gsub!("\"","")
-    # screenshot_path += "/screenshots/"
-    # screenshot_path.gsub!("\"","")
   else
     screenshot_path = "#{folder_prefix}/screenshots/"
   end                                 
-  
-  #create screenshot folder function
-  #  screenshot_path = create_screenshot_folder
 
   browser = BROWSER
   # "before all"
@@ -50,6 +45,7 @@ begin
     @table = {}
     @screenshot_path = screenshot_path
     @browser = browser
+    LANGUAGES.each { |table| @table.merge! YAML.load_file("features/fixtures/#{table}.yml") } if ENV['DEF_TEST']
     @table.merge! YAML.load_file("config/config.yml")
     @environment = "http://"
     @time = Time.now

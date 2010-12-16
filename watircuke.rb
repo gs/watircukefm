@@ -21,7 +21,7 @@ class RunMe
       copy_config_yml_file
       folder = setup(ARGV[0])           
       run_with_browser = "BROWSER=#{ARGV[1]}" if validate_browser(ARGV[1])
-      system "cucumber " + "#{run_with_browser}" + " --guess -t @#{test_name} -f html > #{folder}/../#{ARGV[0]}.html"
+      system "cucumber DEF_TEST=TRUE" + "#{run_with_browser}" + " --guess -t @#{test_name} -f html > #{folder}/../#{ARGV[0]}.html"
       finishit
     elsif ("#{ARGV[0]}" =~/\@/) 
       run_with_browser = "BROWSER=#{ARGV[2]}" if validate_browser(ARGV[2])
