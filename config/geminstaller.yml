@@ -7,6 +7,7 @@
 defaults:
   install_options: --include-dependencies
 gems: 
+- name: gherkin
 - name: cucumber
 - name: watir
 - name: firewatir
@@ -24,3 +25,4 @@ gems:
 - name: sys-proctable  #gem install sys-proctable --platform=...
 - name: fileutils
 - name: httparty
+- name: mime-types
