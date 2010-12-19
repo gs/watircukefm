@@ -90,6 +90,12 @@ Solution:
   Switch from Watir-Webdriver to Watir (go to "select_browser.rb" file and comment proper lines)
 
 
+Problem:
+  Missing SYS-PROCTABLE gem
+  
+Solution
+  To install sys-proctable platform (x86-mswin32-60 ,x86-freebsd-7 ,x86-linux ,x86-darwin-8 ,x86-solaris-2.10) need to specify : 
+  gem install sys-proctable --platform="x86-mswin32-60"
 
 License: MIT
 
