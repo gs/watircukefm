@@ -3,7 +3,7 @@ require 'rubygems'
 require 'cucumber'
 require 'colorize'
 
-require 'features/support/create_screenshot_folder'
+require "#{Dir.pwd}/features/support/create_screenshot_folder"
 
 #this are the tests that have config_ files in config/machine/config_*.yml files - designed to work with sanity checks
 tests=%w/bbc_en bbc_de bbc_pl bbc_es bbc_br bbc_fr staging_en staging_de staging_pl staging_es staging_br staging_fr live_en live_de live_pl live_es live_br live_fr/
