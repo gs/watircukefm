@@ -26,3 +26,6 @@ gems:
 - name: fileutils
 - name: httparty
 - name: mime-types
+- name: sqlite3-ruby
+- name: rails -v 2.3.8
+- name: nokogiri
