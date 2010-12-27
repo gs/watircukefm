@@ -14,6 +14,7 @@ require 'features/support/screenshot'
 require 'features/support/check_missing_translations'
 require 'cucumber/formatter/unicode'
 require 'features/support/select_browser'
+require 'vendor/plugins/cucumber_fm/app/models/watircuke'
 include Test::Unit::Assertions
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
@@ -22,7 +23,7 @@ begin
   ##--------------------------------------------------
   read_config               
   if ENV['BROWSER'].nil?
-    BROWSER = select_browser("firefox")
+     Watircuke.is_windows? ? BROWSER = select_browser("ie") : BROWSER = select_browser("firefox")                    
   else
     BROWSER = select_browser(ENV['BROWSER'])
   end
