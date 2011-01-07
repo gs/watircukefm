@@ -132,20 +132,13 @@ Given /^I check all objects$/ do
   create_output
 end
 
-Then /^I sleep until I (NOT )?see the text "(.*)"/ do |visibility, what| 
+Then /^I sleep for (\d*) until I (NOT )?see the text "(.*)"/ do |seconds, visibility, what| 
 
   case visibility.to_s.strip!
-  when 'NOT'
-    while @browser.text.index(what) do
-      sleep 1
-    end                   
-    @browser.text.index(what) == nil
-  
+  when 'NOT'                 
+    1.upto(seconds.to_i).each { |s| @browser.text.index(what) == nil ? break : sleep(1) }
   else  
-    while !@browser.text.index(what) do
-      sleep 1
-    end                   
-    @browser.text.index(what) != nil
+    1.upto(seconds.to_i).each { |s| @browser.text.index(what) != nil ? break : sleep(1) }
   end
 
 end
