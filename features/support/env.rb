@@ -20,7 +20,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 begin
   #read the config.yml file found in config/config.yml
-  ##--------------------------------------------------
+##--------------------------------------------------
   read_config               
   if ENV['BROWSER'].nil?
      Watircuke.is_windows? ? BROWSER = select_browser("ie") : BROWSER = select_browser("firefox")                    
@@ -29,13 +29,13 @@ begin
   end
   CHECK_TRANSLATIONS = @check_translation
   TRANSLATION_TAG = @translation_tag                 
-  
-  LANGUAGES = @fixtures if ENV['DEF_TEST']
 
-  ##-------------------------------------------------
+  LANGUAGES = @fixtures if ENV['DEF_TEST']
+  
+##-------------------------------------------------
 
   folder_prefix = "public/test_results"
-
+  
   if Dir["#{folder_prefix}/*"].select{|x| File.directory?(x)}.map{|x| [File.ctime(x), x]}.sort_by{|x| x.first}.last
     screenshot_path = (Dir["#{folder_prefix}/*"].select{|x| File.directory?(x)}.map{|x| [File.ctime(x), x]}.sort_by{|x| x.first}.last.last.inspect + "/screenshots/").gsub!("\"","")
   else
@@ -57,8 +57,10 @@ begin
   #after each scenario: checking for missing translation on page, count scenario time, makes screenshot if failed
   After do |scenario|
     t = Time.new.to_i
-    check_missing_translations if CHECK_TRANSLATIONS                                                         
-    embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}") if scenario.failed?
+    check_missing_translations if CHECK_TRANSLATIONS
+    if scenario.failed?
+      ENV['DEF_TEST'] ? embed_screenshot("#{@screenshot_path}screenshot-#{t}", "screenshots/screenshot-#{t}") : embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}")
+    end
     scenario_time(@time) 
   end
 
