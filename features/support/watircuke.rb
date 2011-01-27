@@ -311,6 +311,11 @@ module WatirCukeHelpers
   def calculate_date(datevalue)
     return Chronic.parse(datevalue).strftime("%d-%m-%Y") if not Chronic.parse(datevalue).nil?
   end      
+  
+  def create_screenshot(def_test=nil)
+    t = Time.new.to_i
+    def_test ? embed_screenshot("#{@screenshot_path}screenshot-#{t}", "screenshots/screenshot-#{t}") : embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}")
+  end
 end
 
 World(WatirCukeHelpers)
