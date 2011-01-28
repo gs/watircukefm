@@ -38,8 +38,8 @@ Given /I click the "(.*)" link(.*)/ do |what, what2|
     index = what2.gsub(" with index ","")
     @browser.link(:text => what, :index => index.to_i).click
   else    
-  find_link(what)
-end
+    find_link(what)
+  end
 end                           
 
 Given /I onmouseover the "(.*)" link$/ do |what|   
