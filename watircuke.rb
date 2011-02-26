@@ -9,17 +9,17 @@ class RunMe
   end
 
   def start(test, out, browser)
+    run_with_browser = "BROWSER=#{browser}" if RunWatirCukeSetup::validate_browser(browser)
     if ("#{test}" =~/\@/) 
-      run_with_browser = "BROWSER=#{browser}" if RunWatirCukeSetup::validate_browser(browser)
       folder = RunWatirCukeSetup::setup(out ||= test.gsub("\@","").gsub("\,","_"))
       result = "#{folder}/../#{out}.html"
       system "cucumber " + "#{run_with_browser}" + " --guess -t #{test} -f html > #{result}"
-      RunWatirCukeSetup::finishit(result)
+      RunWatirCukeSetup::finishit(folder, out)
     elsif ("#{test}" =~/features/) 
-      run_with_browser = "BROWSER=#{browser}" if RunWatirCukeSetup::validate_browser(browser)
-      folder = RunWatirCukeSetup::setup(browser ||= test.gsub(/\w+\//,"").gsub(/\.\w+/,""))
+      folder = RunWatirCukeSetup::setup(out ||= test.gsub(/\w+\//,"").gsub(/\.\w+/,""))
+      result = "#{folder}/../#{out}.html"
       system "cucumber " + "#{run_with_browser}" + " --guess #{test} -f html > #{result}"
-      RunWatirCukeSetup::finishit(result)
+      RunWatirCukeSetup::finishit(folder, out)
     else
       RunWatirCukeSetup::default_run
     end

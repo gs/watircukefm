@@ -11,8 +11,7 @@ module RunWatirCukeSetup
   end                                    
 
   def validate_browser(bro)
-    browser = %w/ie ff firefox chrome safari/
-    browser.include?(bro)
+    all_browsers.include?(bro)
   end
 
   def name_the_test(test)
@@ -35,4 +34,7 @@ module RunWatirCukeSetup
     puts "#{Dir.pwd}/#{folder.gsub('screenshots','')}#{test}.html".green
   end
   
+  def all_browsers
+    %w/ie ff chrome safari/
+  end
 end
