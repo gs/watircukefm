@@ -5,11 +5,6 @@ module RunWatirCukeSetup
 
   require "#{Dir.pwd}/features/support/create_screenshot_folder"
 
-  def finishit(result)
-    puts "Copy the path to browser to view results"
-    puts "#{result}".green
-  end
-
   def setup(folder)
     t=Time.now.strftime("%y%m%d%H%M")
     create_screenshot_folder("#{folder}", t)
@@ -33,4 +28,11 @@ module RunWatirCukeSetup
     puts "./watircuke.rb features/my_test.feature output".green
     puts " "
   end
+  
+  def finishit(folder, test)
+    puts
+    puts "Copy the path to browser to view results"
+    puts "#{Dir.pwd}/#{folder.gsub('screenshots','')}#{test}.html".green
+  end
+  
 end
