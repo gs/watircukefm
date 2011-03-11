@@ -15,20 +15,19 @@ def select_browser(browser)
       Watir::Browser.new :chrome
 
     when "ie", "internet explorer"
-      require 'watir'
-      require 'watir/ie'
-      require 'win32ole'
-      require 'win32/process'
-      ie = Watir::IE.new
-      ie.speed = :zippy #browser speed :fast / :zippy
-      return ie
-    
-      #would be better to user this driver
-      #but it hanges...
-      
-      # require 'watir-webdriver'
-      # Watir::Browser.new :ie
-     
+      # require 'watir'
+      # require 'watir/ie'
+      # require 'win32ole'
+      # require 'win32/process'
+      # ie = Watir::IE.new
+      # ie.speed = :zippy #browser speed :fast / :zippy
+      # return ie
+
+      #works OK after update to newest gems
+
+      require 'watir-webdriver'
+      Watir::Browser.new :ie
+
     when "celerity"
       require 'celerity'
       Celerity::Browser.new
