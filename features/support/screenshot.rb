@@ -25,11 +25,9 @@ module Screenshots
   end
   
   def save_screenshot(id, to_html)
-    File.open("#{id}.jpg",'wb') do |f|
-       f.write(Base64.decode64(@browser.driver.screenshot_as(:base64)))
-     end
+    @browser.driver.save_screenshot("#{id}.png")
     to_html.gsub!("public/","") if to_html =~ /public/
-    embed("#{to_html}.jpg", "image/jpg")
+    embed("#{to_html}.png", "image/png")
   end
   
 end
