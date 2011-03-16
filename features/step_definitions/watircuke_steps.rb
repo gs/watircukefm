@@ -83,7 +83,7 @@ end
 
 Then /I take a screenshot/ do
    t = Time.new.to_i
-   create_screenshot(ENV['DEF_TEST'])
+   create_screenshot(ENV['DEF_TEST'] || ENV['CMD'])
 end
 
 Then /I should see the span "(.*)" with "(.*)"/ do |span, what|
@@ -91,7 +91,7 @@ Then /I should see the span "(.*)" with "(.*)"/ do |span, what|
 end
 
 Then /^I should (NOT )?see the text "(.*)"$/ do |visibility, what|      
-  expected = (visibility.to_s.strip == 'NOT') ? @browser.text.index(what).should == nil  : @browser.text.index(what).should >= 0
+    expected = (visibility.to_s.strip == 'NOT') ? @browser.text.index(what).should == nil  : @browser.text.index(what).should >= 0
 end
 
 Then /^It should (NOT )?contains the html "([^\"]*)"$/ do |visibility, what|

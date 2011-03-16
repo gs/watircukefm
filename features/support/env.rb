@@ -57,13 +57,13 @@ begin
   #after each scenario: checking for missing translation on page, count scenario time, makes screenshot if failed
   After do |scenario|
     check_missing_translations if CHECK_TRANSLATIONS
-    create_screenshot(ENV['DEF_TEST']) if scenario.failed?
+    create_screenshot(ENV['DEF_TEST'] || ENV['CMD']) if scenario.failed?
     scenario_time(@time) 
   end
 
   # after each step which is called '@new_feature' make a screenshot
   AfterStep('@new_feature') do
-    create_screenshot
+    create_screenshot(ENV['DEF_TEST'] || ENV['CMD'])
   end
   
   at_exit do 

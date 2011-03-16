@@ -28,13 +28,16 @@ module RunWatirCukeSetup
     puts " "
   end
   
-  def finishit(folder, test)
-    puts
-    puts "Copy the path to browser to view results"
-    puts "#{Dir.pwd}/#{folder.gsub('screenshots','')}#{test}.html".green
+  def finishit(folder, test, is_cmd=nil)
+    if is_cmd
+      puts
+      puts "Copy the path to browser to view results"
+      puts "#{Dir.pwd}/#{folder.gsub('screenshots','')}#{test}.html".green
+    end
   end
   
   def all_browsers
     %w/ie ff chrome safari/
   end
+
 end

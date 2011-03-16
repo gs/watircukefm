@@ -5,7 +5,7 @@ class Documentation::WatircukeController < Documentation::ApplicationController
   def runme                         
     @@testname = params[:test_name].split(".")[0] 
     browser = params[:watircuke_test][:browser_name].chomp                                                          
-    runme_params = "ruby #{Dir.pwd}/watircuke.rb features/#{params[:test_name].downcase} #{@@testname} #{browser}"
+    runme_params = "ruby #{Dir.pwd}/watircuke.rb features/#{params[:test_name].downcase} #{@@testname} #{browser} web"
     Watircuke.start_process(runme_params)
   end
 

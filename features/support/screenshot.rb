@@ -10,26 +10,28 @@
 module Screenshots      
   if Cucumber::OS_X
     def embed_screenshot(id, to_html)
-      `screencapture -t png #{id}.png`
-      to_html.gsub!("public/","") if to_html =~ /public/
-      embed("#{to_html}.png", "image/png")
+      save_screenshot(id, to_html)
     end
   elsif Cucumber::WINDOWS
-    # http://wtr.rubyforge.org/rdoc/classes/Watir/ScreenCapture.html
-    require 'watir/screen_capture'
-    include Watir::ScreenCapture
     def embed_screenshot(id, to_html)
       id = Dir.pwd.gsub("/","\\") + "\\" + id.gsub("/","\\")
-      to_html.gsub!("public/", "") if to_html =~ /public/
-      screen_capture("#{id}.jpg", true)   
-      embed("#{to_html}.jpg", "image/jpg")
-    end
-  else
+      save_screenshot(id, to_html)
+    end  
+    else
     # Other platforms...
     def embed_screenshot(id, to_html)
-      STDERR.puts "Sorry - no screenshots on your platform yet."
+      save_screenshot(id, to_html)
     end
   end
+  
+  def save_screenshot(id, to_html)
+    File.open("#{id}.jpg",'wb') do |f|
+       f.write(Base64.decode64(@browser.driver.screenshot_as(:base64)))
+     end
+    to_html.gsub!("public/","") if to_html =~ /public/
+    embed("#{to_html}.jpg", "image/jpg")
+  end
+  
 end
 World(Screenshots)
 
