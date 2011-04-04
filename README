@@ -1,6 +1,6 @@
 ==   WatirCukeFM   ==
 
-Watir  / Webdriver + Cucumber + Feature Manager
+Webdriver + Cucumber + Feature Manager
 
 Web Application which allows to managed cucumber features written in cucumber and runs them throughout browser.
 
@@ -12,11 +12,13 @@ Demo can be viewed on http://www.vimeo.com/17840436
 
 1) Just clone the repo from "https://github.com/gs/watircukefm/"
 
-2) install missing gems (geminstaller config/geminstaller.yml)
+2) install bundler (gem install bundle)
 
-3) run server (./script/server)
+3) install all gems : bundle install 
 
-4) go to your browser and type url: http://localhost:3000/documentation/features
+4) run server (./script/server)
+
+5) go to your browser and type url: http://localhost:3000/documentation/features
 
 
 Application is divided for 3 parts:
@@ -38,7 +40,7 @@ IMPORTANT:
 
 - To get familiar with syntax just check "watircuke_step.rb" file or visit https://github.com/gs/WatirCuke-Bundles. You can clone https://github.com/gs/WatirCuke-Bundles and drop it into TextMate or Redcar for snippet support.
 
-- Application makes screenshots if some step will fail (not implemeted for linux yet.)
+- Application makes screenshots if some step will fail.
 
 - Can check for missing translation - just goto config/config.yml file and enter regexp for translation_tag and set check_translation to true
 
@@ -83,19 +85,17 @@ Solution:
  Just kill the browser and test and starts once again.
 
 
-Problem:  
-  IE hangs when using Watir-Webdriver
-  
-Solution:
-  Switch from Watir-Webdriver to Watir (go to "select_browser.rb" file and comment proper lines)
-
-
 Problem:
   Missing SYS-PROCTABLE gem
   
 Solution
   To install sys-proctable platform (x86-mswin32-60 ,x86-freebsd-7 ,x86-linux ,x86-darwin-8 ,x86-solaris-2.10) need to specify : 
-  gem install sys-proctable --platform="x86-mswin32-60"
+
+  Windows:
+    gem install sys-proctable --platform="x86-mswin32-60"
+
+  MacOsx
+    gem install sys-proctable --platform="x86-darwin-8"
 
 License: MIT
 
