@@ -1,0 +1,9 @@
+source "http://rubygems.org"
+gem 'chronic'
+gem 'watir-webdriver'
+gem 'cucumber'
+gem 'ruby-debug'
+gem 'colorize'
+gem 'rspec'
+gem 'nokogiri'
+gem 'httparty'
