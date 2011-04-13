@@ -90,8 +90,8 @@ Then /I should see the span "(.*)" with "(.*)"/ do |span, what|
   find_span(span, what)
 end
 
-Then /^I should (NOT )?see the text "(.*)"$/ do |visibility, what|      
-    expected = (visibility.to_s.strip == 'NOT') ? @browser.text.index(what).should == nil  : @browser.text.index(what).should >= 0
+Then /^I should (NOT )?see the text "(.*)"$/ do |visibility, what|        
+  expected = (visibility.to_s.strip == 'NOT') ? @browser.text.include?(what.strip).should == false : @browser.text.include?(what.strip).should == true  
 end
 
 Then /^It should (NOT )?contains the html "([^\"]*)"$/ do |visibility, what|
