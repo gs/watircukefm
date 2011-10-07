@@ -60,18 +60,17 @@ Given /I select "(.*)" from "(.*)"/ do |with, what|
 end
 
 Given /I fill in the text field "(.*)" with "(.*)"/ do |tf_name, what| 
-    find_text_field(tf_name, what)
+  find_text_field(tf_name, what)
 end
 
 Given /I fill in the date field "(.*)" with "(.*)"/ do |tf_name, what| 
-    find_text_field(tf_name, calculate_date(what))
+  find_text_field(tf_name, calculate_date(what))
 end
 
 
 Given /I fill in the file field "(.*)" with "(.*)"/ do |ff_name, what|    
   find_file_field(ff_name, what)
 end
-
 
 Then /I refresh the page/ do
   @browser.refresh
@@ -102,7 +101,7 @@ Then /I click the "(.*)" link until I see the text "(.*)"/ do |click_link, what_
   find_link(click_link)
     while !@browser.text.index(what_to_see) do
           @browser.back
-          sleep 10        
+          sleep 5
           find_link(click_link)
    end                   
   @browser.text.index(what_to_see) != nil

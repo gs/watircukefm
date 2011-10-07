@@ -7,7 +7,7 @@
 #
 
 #TODO: fix the screenshots on windows - does not stores
-module Screenshots      
+module Screenshots
   if Cucumber::OS_X
     def embed_screenshot(id, to_html)
       save_screenshot(id, to_html)
@@ -16,27 +16,26 @@ module Screenshots
     def embed_screenshot(id, to_html)
       id = Dir.pwd.gsub("/","\\") + "\\" + id.gsub("/","\\")
       save_screenshot(id, to_html)
-    end  
+    end
     else
     # Other platforms...
     def embed_screenshot(id, to_html)
       save_screenshot(id, to_html)
     end
   end
-  
+
   def save_screenshot(id, to_html)
     @browser.driver.save_screenshot("#{id}.png")
     to_html.gsub!("public/","") if to_html =~ /public/
     embed("#{to_html}.png", "image/png")
   end
-  
+
 end
 World(Screenshots)
 
 # After do |scenario|
 #    embed_screenshot("#{@screenshot_path}screenshot-#{Time.new.to_i}")  if scenario.failed?
-# end        
-
+# end
 # Other variants:
 #
 # Only take screenshot on failures
