@@ -19,8 +19,6 @@ module WatirCukeHelpers
     when @browser.button(:index, what.to_i).exists?
     then @browser.button(:index, what.to_i).click
 
-      #			 when @browser.button(:text, /#{what}/).exists?
-      #						then @browser.button(:text, /#{what}/).click
     else
       fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
     end
@@ -310,8 +308,8 @@ module WatirCukeHelpers
 
   def calculate_date(datevalue)
     return Chronic.parse(datevalue).strftime("%d-%m-%Y") if not Chronic.parse(datevalue).nil?
-  end      
-  
+  end
+
   def create_screenshot(def_test=nil)
     t = Time.new.to_i
     def_test ? embed_screenshot("#{@screenshot_path}screenshot-#{t}", "screenshots/screenshot-#{t}") : embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}")
