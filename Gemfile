@@ -12,5 +12,8 @@ gem "sqlite3-ruby"
 gem "mime-types"
 gem "syntax"
 gem "sys-proctable"
-gem "win32-process"
-gem "win32-open3"
+gem "headless"
+
+# uncomment below gems if windows
+# gem "win32-process"
+# gem "win32-open3"
