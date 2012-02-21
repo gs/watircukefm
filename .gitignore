@@ -5,4 +5,9 @@ public/test_results/*
 config/*
 features/*
 bin/*
+.rvmrc
+qype.rb
+tags
+tmp/*
+watircuke_qype.rb
 
