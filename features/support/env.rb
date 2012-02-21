@@ -7,6 +7,7 @@ require 'rspec'
 require 'nokogiri'
 require 'open-uri'
 require 'openssl'
+require 'active_support/inflector'
 require 'test/unit/assertions'
 require 'features/support/read_config'
 require 'features/support/create_screenshot_folder'
@@ -21,26 +22,25 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 begin
   #read the config.yml file found in config/config.yml
 ##--------------------------------------------------
-  read_config               
-  if ENV['BROWSER'].nil?
-     Watircuke.is_windows? ? BROWSER = select_browser("ie") : BROWSER = select_browser("firefox")                    
-  else
-    BROWSER = select_browser(ENV['BROWSER'])
-  end
+  read_config
+  BROWSER = ENV['BROWSER'].nil? ?
+          (Watircuke.is_windows? ?  select_browser("ie") : select_browser("firefox")) :
+            select_browser(ENV['BROWSER'])
+
   CHECK_TRANSLATIONS = @check_translation
-  TRANSLATION_TAG = @translation_tag                 
+  TRANSLATION_TAG = @translation_tag
 
   LANGUAGES = @fixtures if ENV['DEF_TEST']
-  
+
 ##-------------------------------------------------
 
   folder_prefix = "public/test_results"
-  
+
   if Dir["#{folder_prefix}/*"].select{|x| File.directory?(x)}.map{|x| [File.ctime(x), x]}.sort_by{|x| x.first}.last
     screenshot_path = (Dir["#{folder_prefix}/*"].select{|x| File.directory?(x)}.map{|x| [File.ctime(x), x]}.sort_by{|x| x.first}.last.last.inspect + "/screenshots/").gsub!("\"","")
   else
     screenshot_path = "#{folder_prefix}/screenshots/"
-  end                                 
+  end
 
   browser = BROWSER
   # "before all"
@@ -53,24 +53,24 @@ begin
     @environment = "http://"
     @time = Time.now
   end
-  
+
   #after each scenario: checking for missing translation on page, count scenario time, makes screenshot if failed
   After do |scenario|
     check_missing_translations if CHECK_TRANSLATIONS
     create_screenshot(ENV['DEF_TEST'] || ENV['CMD']) if scenario.failed?
-    scenario_time(@time) 
+    scenario_time(@time)
   end
 
   # after each step which is called '@new_feature' make a screenshot
   AfterStep('@new_feature') do
     create_screenshot(ENV['DEF_TEST'] || ENV['CMD'])
   end
-  
-  at_exit do 
+
+  at_exit do
    browser.close
   end
-  
+
 rescue Exception => ex
   puts "#{ex}".red
-end                                                                                            
+end
 

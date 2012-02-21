@@ -37,7 +37,7 @@ module RunWatirCukeSetup
   end
   
   def all_browsers
-    %w/ie ff chrome safari/
+    %w/ie ff chrome safari headless/
   end
 
 end

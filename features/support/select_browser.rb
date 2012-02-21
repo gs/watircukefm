@@ -31,6 +31,10 @@ def select_browser(browser)
     when "celerity"
       require 'celerity'
       Celerity::Browser.new
+
+    when "headless"
+      require 'headless'
+      Headless.new
     else
       raise "This platform is not supported (#{PLATFORM})"
     end
