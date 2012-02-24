@@ -1,272 +1,141 @@
 module WatirCukeHelpers
-  def find_button(what)
-    case
-    when @browser.button(:id, what).exists?
-    then @browser.button(:id, what).click
 
-    when @browser.button(:name, what).exists?
-    then @browser.button(:name, what).click
+  def failed(what)
+    fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
+  end
 
-    when @browser.button(:value, what).exists?
-    then @browser.button(:value, what).click
-
-    when @browser.button(:class, what).exists?
-    then @browser.button(:class, what).click
-
-    when @browser.button(:text, what).exists?
-    then @browser.button(:text, what).click
-
-    when @browser.button(:index, what.to_i).exists?
-    then @browser.button(:index, what.to_i).click
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
+  def basic_types(field)
+    case field
+    when "button", "checkbox", "radio", "select", "text_field", "file_field", "span", "div"
+      [:id, :name, :value, :class, :text, :index]
+    when "img"
+      [:id, :src, :name, :text, :alt, :class, :index]
+    when "link"
+      [:text, :id, :class, :title, :href]
+    when "table"
+      [:id, :name, :class, :index]
     end
+  end
+
+  def find_button(what)
+    basic_types("button").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.button(type, what)
+      action.exists? ?
+      (return action.click ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_checkbox(what)
-    case
-    when @browser.checkbox(:id, what).exists?
-    then @browser.checkbox(:id, what).click
-
-    when @browser.checkbox(:name, what).exists?
-    then @browser.checkbox(:name, what).click
-
-    when @browser.checkbox(:value, what).exists?
-    then @browser.checkbox(:value, what).click
-
-    when @browser.checkbox(:text, what).exists?
-    then @browser.checkbox(:text, what).click
-
-    when @browser.checkbox(:class, what).exists?
-    then @browser.checkbox(:class, what).click
-
-    when @browser.checkbox(:index, what.to_i).exists?
-    then @browser.checkbox(:index, what.to_i).click
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
+    basic_types("checkbox").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.checkbox(type, what)
+      action.exists? ?
+      (return action.click ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_image(what)
-    case
-    when @browser.image(:src, what).exists?
-    then @browser.image(:src, what).click
-
-    when @browser.image(:id, what).exists?
-    then @browser.image(:id, what).click
-
-    when @browser.image(:name, what).exists?
-    then @browser.image(:name, what).click
-
-    when @browser.image(:text, what).exists?
-    then @browser.image(:text, what).click
-
-    when @browser.image(:alt, what).exists?
-    then @browser.image(:alt, what).click
-
-    when @browser.image(:class, what).exists?
-    then @browser.image(:class, what).click
-
-    when @browser.image(:index, what.to_i).exists?
-    then @browser.image(:index, what.to_i).click
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
+    basic_types("img").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.image(type, what)
+      action.exists? ?
+      (return action.click ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_link(what)
-    case
-    when @browser.link(:text, what).exists?
-    then @browser.link(:text, what).click
+    basic_types("link").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.link(type, /#{what}/)# || @browser.link(type, /#{what}/)
+      action.exists? ?
+      (return action.click ? true : failed(what)) : next
+     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
 
-    when @browser.link(:id, what).exists?
-    then @browser.link(:id, what).click
+    # when @browser.link(:text, /#{what}/).exists?
+    # then @browser.link(:id, /#{what}/).click
+    # then @browser.link(:title, what).click
+    # then  @browser.link(:href, /#{what}/).click
 
-
-    when @browser.link(:class, what).exists?
-    then @browser.link(:class, what).click
-
-    when @browser.link(:text, /#{what}/).exists?
-    then @browser.link(:text, /#{what}/).click
-
-    when @browser.link(:id, /#{what}/).exists?
-    then @browser.link(:id, /#{what}/).click
-
-    when @browser.link(:title, what).exists?
-    then @browser.link(:title, what).click
-
-    when @browser.link(:href, /#{what}/).exists?
-    then	@browser.link(:href, /#{what}/).click
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
   end
 
   def find_radio_button(what)
-    case
-    when @browser.radio(:id, what).exists?
-    then @browser.radio(:id, what).click
-
-    when @browser.radio(:name, what).exists?
-    then @browser.radio(:name, what).click
-
-    when @browser.radio(:value, what).exists?
-    then @browser.radio(:value, what).click
-
-    when @browser.radio(:text, what).exists?
-    then @browser.radio(:text, what).click
-
-    when @browser.radio(:class, what).exists?
-    then @browser.radio(:class, what).click
-
-
-    when @browser.radio(:index, what.to_i).exists?
-    then @browser.radio(:index, what.to_i).click
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
+    basic_types("radio").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.radio(type, what)
+      action.exists? ?
+      (return action.click ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_table(row, column, what)
     row = row.to_i
     column = column.to_i
-    case
-    when @browser.table(:id, what).exists?
-    then @browser.table(:id, what)[row][column].click
-
-    when @browser.table(:name, what).exists?
-    then @browser.table(:name, what)[row][column].click
-
-    when @browser.table(:class, what).exists?
-    then @browser.table(:class, what)[row][column].click
-
-    when @browser.table(:index, what.to_i).exists?
-    then @browser.table(:index, what.to_i)[row][column].click
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
+    basic_types("table").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.table(type, what)
+      action.exists? ?
+      (return action[row][column].click ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_select_list(option, what)
-    case
-    when @browser.select_list(:id, what).exists?
-    then @browser.select_list(:id, what).select(option)
+    basic_types("select").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.select_list(type, what)
+      action.exists? ?
+      (return action.select(option) ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
 
-    when @browser.select_list(:name, what).exists?
-    then @browser.select_list(:name, what).select(option)
+    # when @browser.select_list(:class, /(^|\s)#{what}(\s|$)/).exists?
+    # then @browser.select_list(:class, /(^|\s)#{what}(\s|$)/).set(option)
 
-    when @browser.select_list(:value, what).exists?
-    then @browser.select_list(:value, what).select(option)
-
-    when @browser.select_list(:text, what).exists?
-    then @browser.select_list(:text, what).select(option)
-
-    when @browser.select_list(:class, /(^|\s)#{what}(\s|$)/).exists?
-    then @browser.select_list(:class, /(^|\s)#{what}(\s|$)/).set(option)
-
-    when @browser.select_list(:index, what.to_i).exists?
-    then @browser.select_list(:index, what.to_i).select(option)
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
   end
 
   def find_text_field(what, with)
-    case
-    when @browser.text_field(:id, what).exists?
-    then @browser.text_field(:id, what).set(with)
+    basic_types("text_field").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.text_field(type, what)
+      action.exists? ?
+      (return action.set(with) ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
 
-    when @browser.text_field(:name, what).exists?
-    then @browser.text_field(:name, what).set(with)
+    # when @browser.text_field(:class, /(^|\s)#{what}(\s|$)/).exists?
+    # then @browser.text_field(:class, /(^|\s)#{what}(\s|$)/).set(with)
 
-    when @browser.text_field(:value, what).exists?
-    then @browser.text_field(:value, what).set(with)
-
-    when @browser.text_field(:class, /(^|\s)#{what}(\s|$)/).exists?
-    then @browser.text_field(:class, /(^|\s)#{what}(\s|$)/).set(with)
-
-    when @browser.text_field(:index, what.to_i).exists?
-    then @browser.text_field(:index, what.to_i).set(with)
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
   end
 
   def find_file_field(what, with)
-    case
-    when @browser.file_field(:id, what).exists?
-    then @browser.file_field(:id, what).set(with)
-
-    when @browser.field_field(:name, what).exists?
-    then @browser.field_field(:name, what).set(with)
-
-    when @browser.field_field(:value, what).exists?
-    then @browser.field_field(:value, what).set(with)
-
-    when @browser.field_field(:class, /(^|\s)#{what}(\s|$)/).exists?
-    then @browser.field_field(:class, /(^|\s)#{what}(\s|$)/).set(with)
-
-    when @browser.field_field(:index, what.to_i).exists?
-    then @browser.field_field(:index, what.to_i).set(with)
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
+    basic_types("file_field").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.file_field(type, what)
+      action.exists? ?
+      (return action.set(with) ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
+    # when @browser.field_field(:class, /(^|\s)#{what}(\s|$)/).exists?
+    # then @browser.field_field(:class, /(^|\s)#{what}(\s|$)/).set(with)
   end
 
   def find_span(what,with)
-    case
-    when @browser.span(:id, what).exists?
-    then @browser.span(:id, what).text == with
+    basic_types("span").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.span(type, what)
+      action.exists? ?
+      (return action.text == with ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
 
-    when @browser.span(:name, what).exists?
-    then @browser.span(:name, what).text == with
+    # when @browser.span(:class, /(^|\s)#{what}(\s|$)/).exists?
+    # then @browser.span(:class, /(^|\s)#{what}(\s|$)/).text == with
 
-    when @browser.span(:value, what).exists?
-    then @browser.span(:value, what).text == with
-
-    when @browser.span(:class, /(^|\s)#{what}(\s|$)/).exists?
-    then @browser.span(:class, /(^|\s)#{what}(\s|$)/).text == with
-
-    when @browser.span(:index, what.to_i).exists?
-    then @browser.span(:index, what.to_i).text == with
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element with " + "'#{with}'")
-    end
   end
 
   def find_div(what)
-    case
-    when @browser.div(:id, what).exists?
-    then @browser.div(:id, what).click
-
-    when @browser.div(:text, what).exists?
-    then @browser.div(:text, what).click
-
-    when @browser.div(:name, what).exists?
-    then @browser.div(:name, what).click
-
-    when @browser.div(:value, what).exists?
-    then @browser.div(:value, what).click
-
-    when @browser.div(:class, what).exists?
-    then @browser.div(:class, what).click
-
-    when @browser.div(:index, what.to_i).exists?
-    then @browser.div(:index, what.to_i).click
-
-    else
-      fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-    end
+    basic_types("div").each do |type|
+      what = what.to_i if type == :index && what.to_i > 0
+      action = @browser.div(type, what)
+      action.exists? ?
+      (return action.click ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def click_alert_button_ok
@@ -276,7 +145,7 @@ module WatirCukeHelpers
     elsif @browser.class.to_s == "FireWatir::Firefox"
       @browser.startClicker("OK", 3)
     elsif @browser.class.to_s == "Watir::Safari"
-#      $fail("JS clicking not availalble for Safari Watir currently...")
+      #      $fail("JS clicking not availalble for Safari Watir currently...")
     else
       @browser.execute_script("window.alert = function(msg) { return true; }")
       @browser.execute_script("window.confirm = function(msg) { return true; }")
@@ -293,7 +162,7 @@ module WatirCukeHelpers
 
   def parse_from_yaml(with)
     w = with.gsub(":","").split(".")
-    puts "<li class=\"step passed\">Exchanged: <b>#{with} => #{@table[w[0]][w[1]]}</b></li>" 
+    puts "<li class=\"step passed\">Exchanged: <b>#{with} => #{@table[w[0]][w[1]]}</b></li>"
     return @table[w[0]][w[1]]
   end
 
