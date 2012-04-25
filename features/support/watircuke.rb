@@ -47,16 +47,13 @@ module WatirCukeHelpers
   def find_link(what)
     basic_types("link").each do |type|
       what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.link(type, /#{what}/)# || @browser.link(type, /#{what}/)
+      @browser.link(type, what).exists? ?
+        action = @browser.link(type, what) :
+        action = @browser.link(type, /#{what}/)
+
       action.exists? ?
       (return action.click ? true : failed(what)) : next
      end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
-
-    # when @browser.link(:text, /#{what}/).exists?
-    # then @browser.link(:id, /#{what}/).click
-    # then @browser.link(:title, what).click
-    # then  @browser.link(:href, /#{what}/).click
-
   end
 
   def find_radio_button(what)
@@ -186,3 +183,6 @@ module WatirCukeHelpers
 end
 
 World(WatirCukeHelpers)
+
+
+
