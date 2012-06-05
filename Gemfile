@@ -8,7 +8,7 @@ gem 'rspec'
 gem 'nokogiri'
 gem 'httparty'
 gem 'rails', "2.3.14"
-gem "sqlite3-ruby"
+gem "sqlite3"
 gem "mime-types"
 gem "syntax"
 gem "sys-proctable"
