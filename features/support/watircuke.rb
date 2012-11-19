@@ -4,7 +4,7 @@ module WatirCukeHelpers
     fail("Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
-  def basic_types(field)
+  def basic__types(field)
     case field
     when "button", "checkbox", "radio", "select", "text_field", "file_field", "span", "div"
       [:id, :name, :value, :class, :text, :index]
@@ -14,42 +14,44 @@ module WatirCukeHelpers
       [:text, :id, :class, :title, :href]
     when "table"
       [:id, :name, :class, :index]
+    when "element"
+      [:css]
     end
   end
 
   def find_button(what)
-    basic_types("button").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.button(type, what)
+    basic__types("button").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.button(_type, what)
       action.exists? ?
       (return action.click ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_checkbox(what)
-    basic_types("checkbox").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.checkbox(type, what)
+    basic__types("checkbox").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.checkbox(_type, what)
       action.exists? ?
       (return action.click ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_image(what)
-    basic_types("img").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.image(type, what)
+    basic__types("img").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.image(_type, what)
       action.exists? ?
       (return action.click ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_link(what)
-    basic_types("link").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      @browser.link(type, what).exists? ?
-        action = @browser.link(type, what) :
-        action = @browser.link(type, /#{what}/)
+    basic__types("link").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      @browser.link(_type, what).exists? ?
+        action = @browser.link(_type, what) :
+        action = @browser.link(_type, /#{what}/)
 
       action.exists? ?
       (return action.click ? true : failed(what)) : next
@@ -57,9 +59,9 @@ module WatirCukeHelpers
   end
 
   def find_radio_button(what)
-    basic_types("radio").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.radio(type, what)
+    basic__types("radio").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.radio(_type, what)
       action.exists? ?
       (return action.click ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
@@ -68,18 +70,18 @@ module WatirCukeHelpers
   def find_table(row, column, what)
     row = row.to_i
     column = column.to_i
-    basic_types("table").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.table(type, what)
+    basic__types("table").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.table(_type, what)
       action.exists? ?
       (return action[row][column].click ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
   def find_select_list(option, what)
-    basic_types("select").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.select_list(type, what)
+    basic__types("select").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.select_list(_type, what)
       action.exists? ?
       (return action.select(option) ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
@@ -90,9 +92,9 @@ module WatirCukeHelpers
   end
 
   def find_text_field(what, with)
-    basic_types("text_field").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.text_field(type, what)
+    basic__types("text_field").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.text_field(_type, what)
       action.exists? ?
       (return action.set(with) ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
@@ -103,9 +105,9 @@ module WatirCukeHelpers
   end
 
   def find_file_field(what, with)
-    basic_types("file_field").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.file_field(type, what)
+    basic__types("file_field").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.file_field(_type, what)
       action.exists? ?
       (return action.set(with) ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
@@ -114,9 +116,9 @@ module WatirCukeHelpers
   end
 
   def find_span(what,with)
-    basic_types("span").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.span(type, what)
+    basic__types("span").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.span(_type, what)
       action.exists? ?
       (return action.text == with ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
@@ -127,14 +129,23 @@ module WatirCukeHelpers
   end
 
   def find_div(what)
-    basic_types("div").each do |type|
-      what = what.to_i if type == :index && what.to_i > 0
-      action = @browser.div(type, what)
+    basic__types("div").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.div(_type, what)
       action.exists? ?
       (return action.click ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
 
+  def find_element(what)
+    basic__types("element").each do |_type|
+      what = what.to_i if _type == :index && what.to_i > 0
+      action = @browser.element(_type, what)
+      action.exists? ?
+      (return action.click ? true : failed(what)) : next
+    end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
+  end
+ 
   def click_alert_button_ok
     if @browser.class.to_s == "Watir::IE"
       Process.kill(9,$pid)  if $pid

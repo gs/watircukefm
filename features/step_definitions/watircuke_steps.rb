@@ -67,6 +67,10 @@ Given /I fill in the date field "(.*)" with "(.*)"/ do |tf_name, what|
   find_text_field(tf_name, calculate_date(what))
 end
 
+Given /I click the "(.*)" element/ do |what|
+  find_element(what)
+end
+
 
 Given /I fill in the file field "(.*)" with "(.*)"/ do |ff_name, what|
   find_file_field(ff_name, what)
@@ -93,7 +97,7 @@ Then /^I should (NOT )?see the text "(.*)"$/ do |visibility, what|
   expected = (visibility.to_s.strip == 'NOT') ? @browser.text.include?(what.strip).should == false : @browser.text.include?(what.strip).should == true
 end
 
-Then /^It should (NOT )?contains the html "([^\"]*)"$/ do |visibility, what|
+Then /^I should (NOT )?contain the html "([^\"]*)"$/ do |visibility, what|
   expected = (visibility.to_s.strip == 'NOT') ? @browser.html.index(what).should == nil  : @browser.html.index(what).should >= 0
 end
 
