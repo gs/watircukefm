@@ -16,8 +16,9 @@ Given /I click the "(.*)" button(.*)/ do |what, what2|
   elsif what2 =~ /with index \d+/
     index = what2.gsub(" with index ","")
     @browser.button(:id => what, :index => index.to_i).click
-   end
-  find_button(what)
+  else
+    find_button(what)
+  end
 end
 
 
@@ -45,7 +46,6 @@ Given /I click the "(.*)" link(.*)/ do |what, what2|
   end
 end
 
-Given /I click the "(.*)" link(.*)/ do |what, what2|
 Given /I onmouseover the "(.*)" link$/ do |what|
   @browser.link(:text, /#{what}/).exists?
   @browser.link(:text, /#{what}/).fire_event('onmouseover')
