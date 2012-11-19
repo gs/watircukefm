@@ -10,10 +10,13 @@ end
 #  @browser = select_browser(b)
 #end
 
-Given /I click the "(.*)" button(.*)/ do |what, alert|
-  if alert == " with alert"
+Given /I click the "(.*)" button(.*)/ do |what, what2|
+  if what2 == " with alert"
     click_alert_button_ok
-  end
+  elsif what2 =~ /with index \d+/
+    index = what2.gsub(" with index ","")
+    @browser.button(:id => what, :index => index.to_i).click
+   end
   find_button(what)
 end
 
@@ -42,6 +45,7 @@ Given /I click the "(.*)" link(.*)/ do |what, what2|
   end
 end
 
+Given /I click the "(.*)" link(.*)/ do |what, what2|
 Given /I onmouseover the "(.*)" link$/ do |what|
   @browser.link(:text, /#{what}/).exists?
   @browser.link(:text, /#{what}/).fire_event('onmouseover')
