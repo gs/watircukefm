@@ -11,7 +11,6 @@ require 'active_support/inflector'
 require 'test/unit/assertions'
 require 'features/support/read_config'
 require 'features/support/create_screenshot_folder'
-require 'features/support/screenshot'
 require 'features/support/check_missing_translations'
 require 'cucumber/formatter/unicode'
 require 'features/support/select_browser'
@@ -56,6 +55,7 @@ begin
 
   #after each scenario: checking for missing translation on page, count scenario time, makes screenshot if failed
   After do |scenario|
+    @scenario_id = scenario.raw_steps.first.dom_id
     check_missing_translations if CHECK_TRANSLATIONS
     create_screenshot(ENV['DEF_TEST'] || ENV['CMD']) if scenario.failed?
     scenario_time(@time)
