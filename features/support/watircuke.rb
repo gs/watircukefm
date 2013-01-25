@@ -145,7 +145,7 @@ module WatirCukeHelpers
       (return action.click ? true : failed(what)) : next
     end.send(:fail, "Sorry, I wasn't able to find the " + "'#{what}'" + " element ")
   end
- 
+
   def click_alert_button_ok
     if @browser.class.to_s == "Watir::IE"
       Process.kill(9,$pid)  if $pid
@@ -170,12 +170,12 @@ module WatirCukeHelpers
 
   def parse_from_yaml(with)
     w = with.gsub(":","").split(".")
-    puts "<li class=\"step passed\">Exchanged: <b>#{with} => #{@table[w[0]][w[1]]}</b></li>"
+    puts %(<li class="step passed">Exchanged: <b>#{with} => #{@table[w[0]][w[1]]}</b></li>)
     return @table[w[0]][w[1]]
   end
 
   def scenario_time(time)
-    puts "<h3 id=\"scenario_1\" style=\"cursor: pointer; \"><span class=\"keyword\">Scenario took:</span> <span class=\"val\">#{Time.now - time}</span></h3>"
+    puts %(<li id=#{@scenario_id} class="step passed" style="cursor: pointer; "><span class="keyword">Scenario took:</span> <span class="val">#{Time.now - time}</span></li>)
   end
 
   #validate if this is a fixture
@@ -189,7 +189,8 @@ module WatirCukeHelpers
 
   def create_screenshot(def_test=nil)
     t = Time.new.to_i
-    def_test ? embed_screenshot("#{@screenshot_path}screenshot-#{t}", "screenshots/screenshot-#{t}") : embed_screenshot("#{@screenshot_path}screenshot-#{t}", "/#{@screenshot_path}screenshot-#{t}")
+    @browser.screenshot.save("#{@screenshot_path}screenshot-#{t}")
+    embed "screenshots/screenshot-#{t}", 'image/png'
   end
 end
 
