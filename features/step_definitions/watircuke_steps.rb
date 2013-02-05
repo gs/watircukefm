@@ -6,10 +6,6 @@ Transform /^\:\w*\.\w*$/ do |step_arg|
   what = parse_from_yaml(step_arg)   if fixture?(step_arg)
 end
 
-#Given /I start "(.*)" browser/ do |b|
-#  @browser = select_browser(b)
-#end
-
 Given /I click the "(.*)" button(.*)/ do |what, what2|
   if what2 == " with alert"
     click_alert_button_ok
@@ -40,7 +36,11 @@ Given /I click the "(.*)" link(.*)/ do |what, what2|
     find_link(what)
   elsif what2 =~ /with index \d+/
     index = what2.gsub(" with index ","")
-    @browser.link(:text => what, :index => index.to_i).click
+    if @browser.link(:text => what, :index => index.to_i).exists?
+       @browser.link(:text => what, :index => index.to_i).click
+     elsif @browser.link(:class => what, :index => index.to_i).exists?
+        @browser.link(:class => what, :index => index.to_i).click
+    end
   else
     find_link(what)
   end
