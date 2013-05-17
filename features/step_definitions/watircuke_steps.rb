@@ -141,11 +141,11 @@ end
 
 Then /^I sleep for (\d*) until I (NOT )?see the text "(.*)"/ do |seconds, visibility, what|
 
-  case visibility.to_s.strip!
+  case visibility.to_s.strip
   when 'NOT'
-    1.upto(seconds.to_i).each { |s| @browser.text[what.strip].nil? ? break : sleep(1) }
+    !(1.upto(seconds.to_i).each { |s| @browser.text[what.strip].nil? ? break : sleep(1) })
   else
-    1.upto(seconds.to_i).each { |s| @browser.text[what.strip] ? break : sleep(1) }
+    !(1.upto(seconds.to_i).each { |s| @browser.text[what.strip] ? break : sleep(1) })
   end
 
 end
