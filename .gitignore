@@ -11,3 +11,5 @@ tags
 tmp/*
 watircuke_qype.rb
 
+.DS_Store
+.bundle/
